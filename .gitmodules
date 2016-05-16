@@ -1,0 +1,24 @@
+[submodule "build"]
+	path = build
+	url = https://github.com/Lapiz-js/build
+[submodule "core"]
+	path = core
+	url = https://github.com/Lapiz-js/core
+[submodule "docs"]
+	path = docs
+	url = https://github.com/Lapiz-js/docs
+[submodule "testing"]
+	path = testing
+	url = https://github.com/Lapiz-js/testing
+[submodule "components/validator"]
+	path = components/validator
+	url = https://github.com/Lapiz-js/validator
+[submodule "components/ui"]
+	path = components/ui
+	url = https://github.com/Lapiz-js/ui
+[submodule "components/template"]
+	path = components/template
+	url = https://github.com/Lapiz-js/template
+[submodule "components/ajax"]
+	path = components/ajax
+	url = https://github.com/Lapiz-js/ajax
