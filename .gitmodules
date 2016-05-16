@@ -22,3 +22,6 @@
 [submodule "components/ajax"]
 	path = components/ajax
 	url = https://github.com/Lapiz-js/ajax
+[submodule "autodoc"]
+	path = autodoc
+	url = https://github.com/Lapiz-js/autodoc
