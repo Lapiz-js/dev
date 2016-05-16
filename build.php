@@ -51,7 +51,7 @@
         }
         print("</ul>");
         exec("cat $all > build/$name.js");
-        $command = "java -jar /home/ubuntu/yuicompressor-2.4.8.jar --type js -o build/min/$name.min.js build/$name.js";
+        $command = "java -jar yuicompressor-2.4.8.jar --type js -o build/min/$name.min.js build/$name.js";
         print("$command >");
         exec($command, $out);
         $out = implode("\n",$out);
