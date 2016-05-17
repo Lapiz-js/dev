@@ -16,10 +16,9 @@ is primarily so that users interested in using Lapiz but not in developing it
 can pull the builds, docs or source separately.
 
 For developers, pulling this repo sets up a structure to make development easy.
-I know it's kind of an odd setup, but the dev tools are designed to run from a
-browser. They use PHP to make the necessary changes and they output their
-results as html. I do plan on separating out the php so they can be run from the
-command line.
+Running either build.php from a browser or "php tools/build.php" from the
+command line will generate the files in build/ and docs/. This will also run
+yui compressor against the code which may return some structural errors.
 
 ### Terminology Note
 These terms can get confusing, and as of this moment, I'm using them

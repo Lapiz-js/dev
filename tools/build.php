@@ -4,7 +4,7 @@ include 'tools/lapizBuilder.php';
 
 $lapiz = new DirParser();
 foreach($lapiz->projects as $project){
-  $build = new LapizBuild($project);
+  $build = new LapizBuilder($project);
 
   print('== ' . $project['name'] . " ==\n");
   print($project['dir']. "\n");

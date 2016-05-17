@@ -1,3 +1,6 @@
+<?php
+include 'tools/dirParser.php'
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -7,33 +10,7 @@
   </head>
   <body>
     <?php
-      function recursiveDirScan(&$testFiles, &$nonTestJS, &$inits, $inTestsFolder, $path){
-        $js = glob('*.js');
-        foreach($js as $file){
-          $full = $path.$file;
-          if (!in_array($full, $exclude)){
-            if ($file == 'init.js'){
-              $inits[] = $full;
-            } else if ($inTestsFolder){
-              $testFiles[] = $full;
-            } else {
-              $nonTestJS[] = $full;
-            }
-          }
-        }
-        $dirs = glob('*', GLOB_ONLYDIR);
-        foreach($dirs as $dir){
-          if ($dir != 'build'){
-            if ($dir == "ui2"){
-              continue;
-            }
-            $isTestsDir = ($dir == "tests") || $inTestsFolder;
-            chdir($dir);
-            recursiveDirScan($testFiles, $nonTestJS, $inits, $isTestsDir, $path.$dir."/", $exclude);
-            chdir("..");
-          }
-        }
-      }
+      $lapiz = new DirParser();
 
       function includeScripts(&$scripts){
         foreach ($scripts as $script) {
@@ -41,13 +18,20 @@
         }
       }
 
-      $testFiles = [];
-      $inits = [];
-      $nonTestFiles = [];
-      recursiveDirScan($testFiles, $nonTestFiles, $inits, false, "");
-      includeScripts($inits);
-      includeScripts($nonTestFiles);
-      includeScripts($testFiles);
+      foreach($lapiz->projects as $project) {
+        includeScripts($project['inits']);
+      }
+
+      foreach($lapiz->projects as $project) {
+        includeScripts($project['src']);
+      }
+
+      $testingLib = ['testing/test.js', 'testing/ui.js'];
+      includeScripts($testingLib);
+
+      foreach($lapiz->projects as $project) {
+        includeScripts($project['tests']);
+      }
     ?>
   </body>
 </html>

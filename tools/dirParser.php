@@ -16,18 +16,18 @@ class DirParser {
     $proj = [
       'name' => $projectName,
       'dir' => $dir,
-      'testFiles' => [],
-      'nonTestJS' => [],
+      'tests' => [],
+      'src' => [],
       'inits' => [],
     ];
     $oldDir = getcwd();
     chdir($dir);
-    $this->recursiveDirScan($proj['testFiles'], $proj['nonTestJS'], $proj['inits'], false, $dir);
+    $this->recursiveDirScan($proj['tests'], $proj['src'], $proj['inits'], false, $dir);
     chdir($oldDir);
     $this->projects[$projectName] = $proj;
   }
 
-  private function recursiveDirScan(&$testFiles, &$nonTestJS, &$inits, $inTestsFolder, $path){
+  private function recursiveDirScan(&$tests, &$src, &$inits, $inTestsFolder, $path){
     $js = glob('*.js');
 
     foreach($js as $file){
@@ -35,20 +35,18 @@ class DirParser {
       if ($file == 'init.js'){
         $inits[] = $full;
       } else if ($inTestsFolder){
-        $testFiles[] = $full;
+        $tests[] = $full;
       } else {
-        $nonTestJS[] = $full;
+        $src[] = $full;
       }
     }
 
     $dirs = glob('*', GLOB_ONLYDIR | GLOB_MARK);
     foreach($dirs as $dir){
-      if ($dir != 'build'){
-        $isTestsDir = ($dir == 'tests/') || $inTestsFolder;
-        chdir($dir);
-        $this->recursiveDirScan($testFiles, $nonTestJS, $inits, $isTestsDir, $path.$dir);
-        chdir("..");
-      }
+      $isTestsDir = ($dir == 'tests/') || $inTestsFolder;
+      chdir($dir);
+      $this->recursiveDirScan($tests, $src, $inits, $isTestsDir, $path.$dir);
+      chdir("..");
     }
   }
 }

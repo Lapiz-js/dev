@@ -38,19 +38,21 @@ include 'autodoc/autodoc.php';
 
     $lapiz = new DirParser();
     foreach($lapiz->projects as $project){
-      $build = new LapizBuild($project);
+      $build = new LapizBuilder($project);
 
       print('<h2>' . $project['name'] . '</h2>');
       print($project['dir']);
       $dirLen = strlen($project['dir']);
       print('<ul>');
-      foreach(array_merge($project['inits'], $project['nonTestJS']) as $file){
+      foreach(array_merge($project['inits'], $project['src']) as $file){
         print('<li>' . substr($file, $dirLen) . '</li>');
       }
       print('</ul>');
       print($build->command . '>');
       print('<pre>'.$build->commandOutput.'</pre>');
     }
+
+    new IndexDocs();
     ?>
     </div>
   </body>
