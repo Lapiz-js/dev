@@ -43,7 +43,7 @@ include 'autodoc/autodoc.php';
         foreach($js as $file){
           $autoDoc = new AutoDoc();
           $autoDoc->read($file);
-          $autoDoc->out($file, "docs/$file.md");
+          $autoDoc->out($file, "docs/$file.md", "index.md");
           print("<h2>$file</h2>");
           $index[] = "* [$file.md](../$file.md)"; // a hack, but it will work for now
         }
