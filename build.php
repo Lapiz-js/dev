@@ -1,3 +1,8 @@
+<?php
+include 'tools/dirParser.php';
+include 'tools/lapizBuilder.php';
+include 'autodoc/autodoc.php';
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -30,33 +35,22 @@
   <body>
     <div id="wrapper">
     <?php
-      $buildDirs = glob('components/*', GLOB_ONLYDIR);
-      $buildDirs[] = 'core';
 
-      foreach($buildDirs as $dir){
-        $js = glob("$dir/*.js");
-        $init = "$dir/init.js";
-        $initIdx = array_search($init, $js);
-        if ($initIdx !== false){
-          unset($js[$initIdx]);
-          array_unshift($js, $init);
-        }
-        $pos = strrpos($dir, '/');
-        $name = $pos === false ? $dir : substr($dir, $pos + 1);
-        $all = implode(" ",$js);
-        print("<h2>$name</h2>");
-        print("<ul>");
-        foreach($js as $file){
-          print('<li>' . substr($file, strrpos($file, '/') + 1) . '</li>');
-        }
-        print("</ul>");
-        exec("cat $all > build/$name.js");
-        $command = "java -jar yuicompressor-2.4.8.jar --type js -o build/min/$name.min.js build/$name.js";
-        print("$command >");
-        exec($command, $out);
-        $out = implode("\n",$out);
-        print("<pre>$out</pre>");
+    $lapiz = new DirParser();
+    foreach($lapiz->projects as $project){
+      $build = new LapizBuild($project);
+
+      print('<h2>' . $project['name'] . '</h2>');
+      print($project['dir']);
+      $dirLen = strlen($project['dir']);
+      print('<ul>');
+      foreach(array_merge($project['inits'], $project['nonTestJS']) as $file){
+        print('<li>' . substr($file, $dirLen) . '</li>');
       }
+      print('</ul>');
+      print($build->command . '>');
+      print('<pre>'.$build->commandOutput.'</pre>');
+    }
     ?>
     </div>
   </body>
