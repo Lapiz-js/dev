@@ -25,3 +25,6 @@
 [submodule "autodoc"]
 	path = autodoc
 	url = https://github.com/Lapiz-js/autodoc
+[submodule "tools/JShrink"]
+	path = tools/JShrink
+	url = https://github.com/tedious/JShrink

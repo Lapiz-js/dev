@@ -11,6 +11,7 @@ include 'tools/dirParser.php'
   <body>
     <?php
       include 'tools/testLinks.php';
+    
       $lapiz = new DirParser();
 
       function includeScripts(&$scripts){
@@ -19,12 +20,9 @@ include 'tools/dirParser.php'
         }
       }
 
-      foreach($lapiz->projects as $project) {
-        includeScripts($project['inits']);
-      }
-
-      foreach($lapiz->projects as $project) {
-        includeScripts($project['src']);
+      foreach($lapiz->projects as $name=>$project) {
+        $min = ["build/$name.js"];
+        includeScripts($min);
       }
 
       $testingLib = ['testing/test.js', 'testing/ui.js'];

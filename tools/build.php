@@ -1,6 +1,8 @@
 <?php
 include 'tools/dirParser.php';
 include 'tools/lapizBuilder.php';
+include 'autodoc/autodoc.php';
+include 'tools/JSshrink/src/JSshrink/Minifier.php';
 
 $lapiz = new DirParser();
 foreach($lapiz->projects as $project){
@@ -9,10 +11,9 @@ foreach($lapiz->projects as $project){
   print('== ' . $project['name'] . " ==\n");
   print($project['dir']. "\n");
   $dirLen = strlen($project['dir']);
-  foreach(array_merge($project['inits'], $project['nonTestJS']) as $file){
+  foreach(array_merge($project['inits'], $project['src']) as $file){
     print('* ' . substr($file, $dirLen) . "\n");
   }
-  print($build->command . ">\n");
-  print($build->commandOutput);
+  print($build->minOutput);
 }
 ?>

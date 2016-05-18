@@ -2,6 +2,7 @@
 include 'tools/dirParser.php';
 include 'tools/lapizBuilder.php';
 include 'autodoc/autodoc.php';
+include 'tools/JShrink/src/JShrink/Minifier.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -48,8 +49,7 @@ include 'autodoc/autodoc.php';
         print('<li>' . substr($file, $dirLen) . '</li>');
       }
       print('</ul>');
-      print($build->command . '>');
-      print('<pre>'.$build->commandOutput.'</pre>');
+      print('<pre>'.$build->minOutput.'</pre>');
     }
 
     new IndexDocs();

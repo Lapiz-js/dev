@@ -1,6 +1,6 @@
 <?php
 class LapizBuilder{
-  public $command, $commandOutput;
+  public $minOutput;
   public function __construct($project){
     $allNonTest = array_merge($project['inits'], $project['src']);
     $all = implode(' ', $allNonTest);
@@ -10,9 +10,15 @@ class LapizBuilder{
 
     exec("cat $all > build/$name.js");
 
-    $this->command = "java -jar tools/yuicompressor-2.4.8.jar --type js -o build/min/$name.min.js build/$name.js 2>&1";
-    exec($this->command, $commandOutput);
-    $this->commandOutput = implode("\n",$commandOutput);
+    //$this->command = "java -jar tools/yuicompressor-2.4.8.jar --type js --nomunge -o build/min/$name.min.js build/$name.js 2>&1";
+    try{
+      file_put_contents("build/min/$name.min.js" , \JShrink\Minifier::minify(file_get_contents("build/$name.js")));
+      $this->minOutput = "";
+    } catch (Exception $e){
+      $this->minOutput = $e->getMessage();
+    }
+    //exec($this->command, $commandOutput);
+    //$this->commandOutput = implode("\n",$commandOutput);
 
     $index = ["## Index of $dir"];
     $dirLen = strlen($dir);
@@ -31,7 +37,7 @@ class LapizBuilder{
 }
 
 class IndexDocs{
-  public function __construct($project){
+  public function __construct(){
     chdir('docs/');
     $this->recursiveIndex('lapiz/', false);
     chdir('..');
