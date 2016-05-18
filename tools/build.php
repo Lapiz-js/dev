@@ -16,4 +16,5 @@ foreach($lapiz->projects as $project){
   }
   print($build->minOutput);
 }
+new IndexDocs();
 ?>
