@@ -2,7 +2,7 @@
 include 'tools/dirParser.php';
 include 'tools/lapizBuilder.php';
 include 'autodoc/autodoc.php';
-include 'tools/JSshrink/src/JSshrink/Minifier.php';
+include 'tools/JShrink/src/JShrink/Minifier.php';
 
 $lapiz = new DirParser();
 foreach($lapiz->projects as $project){
