@@ -17,7 +17,7 @@ include 'tools/JShrink/src/JShrink/Minifier.php';
       text-align: center;
       background: #ddd;
     }
-    #wrapper {
+    #wrapper, .group {
       background: #fff;
       max-width: 1100px;
       display: block;
@@ -34,6 +34,7 @@ include 'tools/JShrink/src/JShrink/Minifier.php';
     </style>
   </head>
   <body>
+    <?php include 'tools/testLinks.php'; ?>
     <div id="wrapper">
     <?php
 

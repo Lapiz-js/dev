@@ -20,6 +20,14 @@ Running either build.php from a browser or "php tools/build.php" from the
 command line will generate the files in build/ and docs/. This will also run
 yui compressor against the code which may return some structural errors.
 
+### Running Unit Tests
+The unit test are intended to run in a browser. There are 4 variations that will
+appear as links at the top. The main version 'src' is index.php. It will run the
+unit tests against the source code. 'build' is test.php which will run against
+the code in the build folder. 'min' is test.min.php and will run against the
+code in build/min. The last is coverage which will run against source, but will
+inject coverage markers to compute code coverage.
+
 ### Terminology Note
 These terms can get confusing, and as of this moment, I'm using them
 inconsistently.
