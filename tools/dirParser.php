@@ -32,10 +32,10 @@ class DirParser {
 
     foreach($js as $file){
       $full = $path.$file;
-      if ($file == 'init.js'){
-        $inits[] = $full;
-      } else if ($inTestsFolder){
+      if ($inTestsFolder){
         $tests[] = $full;
+      } else if ($file == 'init.js'){
+        $inits[] = $full;
       } else {
         $src[] = $full;
       }

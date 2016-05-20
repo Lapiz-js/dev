@@ -39,3 +39,8 @@ getter/setter or a value. It cannot be overridden.
 
 An attribute is a field attached directly to the object (generally via
 assignment).
+
+### TODO: Dev markers for build
+There are a lot of lines that do type checking - which is great for development, but just a waste of cycles once we're deployed. I'd like to add a way to mark lines for removal during the build process.
+
+It would also be nice to have a toggled debugger for console out.
