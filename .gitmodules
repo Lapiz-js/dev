@@ -28,3 +28,6 @@
 [submodule "tools/JShrink"]
 	path = tools/JShrink
 	url = https://github.com/tedious/JShrink
+[submodule "components/dragDrop"]
+	path = components/dragDrop
+	url = https://github.com/Lapiz-js/dragDrop
