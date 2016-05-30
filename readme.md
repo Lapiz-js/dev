@@ -50,6 +50,11 @@ It would also be nice to have a toggled debugger for console out.
 ### TODO: Demo Project: Lapiz Notes
 I've gotten a start on this. Lapiz Notes will be a small, local notes program. It uses localStorage for persistence. Each note will have one label and may have many tags. This demo was chosen because it has a one-to-many and a man-to-many relationship.
 
+### TODO: Array Namespace
+Move ArrayConverter and remove into a namespace, probably just A for appreviation. Add these
+- unique
+- 
+
 ### TODO: Lapiz Cookbook
 There are many features I've chosen not to include in Lapiz because building a standard interface is more complex and abstract than having a dev write the code themselves. For instance, I had originally wanted a standard way to do many-to-many linking but there are so many slight variations that if it were to be built, it would be more difficult to use than writing a many-to-many. However, showing a few examples would be helpful
 
@@ -58,8 +63,11 @@ There are many features I've chosen not to include in Lapiz because building a s
     - one-to-many
     - null or 0 value
 * adding constructor to Lapiz.parse
-* ViewModels
-* serialize attr with JSON.stringify
 * UI
     - resolver (see currency example)
     - weakMap for attributes
+* Objects
+    - ViewModels via copyProps and on.create
+    - var self = this; closure
+    - serialize attr with JSON.stringify
+    - 
