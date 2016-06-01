@@ -42,6 +42,9 @@ A property is a field that was defined with Object.defineProperty. It may have a
 An attribute is a field attached directly to the object (generally via
 assignment).
 
+### TODO: More Error trapping
+Because there are so many layers of abstraction, often when something goes wrong, it will go through many layers before actually causing an error. Better error checking and trapping will help prevent this.
+
 ### TODO: Dev markers for build
 There are a lot of lines that do type checking - which is great for development, but just a waste of cycles once we're deployed. I'd like to add a way to mark lines for removal during the build process.
 
