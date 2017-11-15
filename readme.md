@@ -46,6 +46,26 @@ getter/setter or a value. It cannot be overridden.
 An attribute is a field attached directly to the object (generally via
 assignment).
 
+### TODO: Function name stuff
+```js
+var Person = $L.Cls(function Person(cls){
+	cls.constructor(function(json){
+		this.setMany(json);
+	});
+});
+console.log(Person.name) // constructor
+```
+
+This happens because the actual returned function is
+classDef.constructor(constructor). I think the solution is to alter
+function getFnName(fn) in collectionsHelper.js and provide an override to rename
+functions. Then use the name of the function passed in for Cls.
+
+This fixes this
+```js
+$L.set(Obj, "Person", Person); // Now
+$L.set(Obj, Person); // better
+```
 ### TODO: More Error trapping
 Because there are so many layers of abstraction, often when something goes
 wrong, it will go through many layers before actually causing an error. Better
